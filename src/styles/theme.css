@@ -1,0 +1,52 @@
+/* Theme configuration for KSNLearn with cyberpunk aesthetic */
+:root {
+  /* Subject-specific gradients */
+  --biology-gradient: linear-gradient(135deg, #00ff9d 0%, #00b8ff 100%);
+  --chemistry-gradient: linear-gradient(135deg, #ff00c3 0%, #ff5555 100%);
+  --physics-gradient: linear-gradient(135deg, #4b83ff 0%, #6b46c1 100%);
+  
+  /* Base colors */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  
+  /* Card styles */
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(255, 255, 255, 0.1);
+  
+  /* Animation durations */
+  --transition-speed: 0.3s;
+}
+
+/* Subject-specific text gradients */
+.gradient-text-biology {
+  background: var(--biology-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+}
+
+.gradient-text-chemistry {
+  background: var(--chemistry-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 0, 195, 0.3);
+}
+
+.gradient-text-physics {
+  background: var(--physics-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(75, 131, 255, 0.3);
+}
+
+/* Global styles */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
