@@ -1,31 +1,31 @@
-// src/components/Login.tsx
+// src/components/SignUp.tsx
 import React, { useState } from 'react';
 import supabase from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
 
     try {
-      const { error: loginError } = await supabase.auth.signInWithPassword({
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
         password,
       });
 
-      if (loginError) {
-        setError(loginError.message);
+      if (signUpError) {
+        setError(signUpError.message);
       } else {
         // Redirect to a different page or show a success message
-         navigate('/'); // Redirect to home page after successful login
+        navigate('/'); // Redirect to home page after successful signup
       }
     } catch (err:any) {
       setError(err.message);
@@ -36,8 +36,8 @@ function Login() {
 
   return (
     <div className="flex items-center justify-center p-6 bg-gray-800 rounded-lg shadow-md">
-      <form onSubmit={handleLogin} className="space-y-4 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center">Login</h2>
+      <form onSubmit={handleSignUp} className="space-y-4 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center">Sign Up</h2>
         {error && <p className="text-red-500">{error}</p>}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
@@ -67,11 +67,11 @@ function Login() {
           className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-gray-600' : 'bg-red-600 hover:bg-red-700'
             } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500`}
         >
-          {loading ? 'Logging In...' : 'Login'}
+          {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default SignUp;

@@ -1,50 +1,26 @@
-import { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import { KSNLearnTextLogo } from './logo/KSNLearnTextLogo';
-import './Navbar.css';
+import React from 'react';
+import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { Link } from 'react-router-dom';
+import { signOut } from '../supabaseClient';
 
-const Navbar = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const auth = useContext(AuthContext);
-
-  if (!auth) {
-    throw new Error('Navbar must be used within an AuthProvider');
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 0);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+const Navbar = ({ toggleSidebar, user, isSidebarOpen }) => {
   return (
-    <nav className={`navbar ${isSticky ? 'sticky' : ''}`}>
-      <div className="navbar-container">
-        <div className="navbar-brand">
-          <KSNLearnTextLogo variant="default" size="sm" animated={true} />
-        </div>
-        
-        <div className="navbar-links">
-          <a href="#biology" className="nav-link biology">Biology</a>
-          <a href="#chemistry" className="nav-link chemistry">Chemistry</a>
-          <a href="#physics" className="nav-link physics">Physics</a>
-        </div>
-
-        <div className="navbar-actions">
-          <button className="lang-toggle">සිංහල</button>
-          {auth.isAuthenticated ? (
-            <button className="login-btn" onClick={auth.logout}>Logout</button>
-          ) : (
-            <>
-              <button className="login-btn" onClick={() => setIsMenuOpen(true)}>Login</button>
-              <button className="signup-btn" onClick={() => setIsMenuOpen(true)}>Sign Up</button>
-            </>
-          )}
-        </div>
+    <nav className="bg-gray-800 p-4 flex justify-between items-center">
+      <button onClick={toggleSidebar} className="md:hidden">
+        {isSidebarOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+      </button>
+      <div>
+        {user ? (
+          <>
+            <span className="text-lg font-medium">{user.email}</span>
+            <button onClick={signOut} className="ml-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Sign Out</button>
+          </>
+        ) : (
+          <>
+            <Link to="/signup" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">Sign Up</Link>
+            <Link to="/login" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</Link>
+          </>
+        )}
       </div>
     </nav>
   );

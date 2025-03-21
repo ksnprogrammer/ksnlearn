@@ -1,68 +1,8 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0d0f14;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* Add your global styles here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0d0f14 0%, #1a1f2c 100%);
-}
-
-h1 {
-  line-height: 1.1;
-  font-weight: 700;
-  background: linear-gradient(135deg, #4b83ff 0%, #9d4bff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-p {
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-a {
-  color: #4b83ff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #9d4bff;
-}
-
-#root {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
-}
-
-.container {
-  position: relative;
-  z-index: 2;
+  font-family: 'Roboto', sans-serif; /* Or your preferred font */
 }
